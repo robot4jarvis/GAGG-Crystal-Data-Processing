@@ -1,0 +1,1 @@
+Put all the .root files obtained from COMPASS, containing energy histograms, in here.
