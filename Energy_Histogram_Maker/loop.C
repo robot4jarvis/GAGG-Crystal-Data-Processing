@@ -1,5 +1,5 @@
 #include <string>
-void betterLoop()
+void loop()
 { 
 	TString rootfolder = "root"; // The name of the folder where the .root files are located
 	
