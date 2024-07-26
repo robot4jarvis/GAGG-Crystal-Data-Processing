@@ -17,7 +17,14 @@ In this folder one can find all the necessary macros to read the .root files gen
 
 ## Energy histogram analysis
 ### Energy_Histogram_Maker
-An event list in .root format was generated using the COMPASS software and a digitizer. To extract a Energy histogram from there, all .root files must be placed in the "root" folder. One energy histogram will be generated for each file (or several, if a file contains more than one cycle). Then, the loop.C script will be launched. It needs the macro.C and the macro.h files in the same folder.
+An event list in .root format was generated using the COMPASS software and a digitizer. To extract a Energy histogram from there, all .root files must be placed in the "root" folder. One energy histogram will be generated for each file (or several, if a file contains more than one cycle). Then, the loop.C script can be used be launched. It needs the macro.C and the macro.h files in the same folder.
+
 The script will loop trough all the .root files in the "root" folder, and build a histogram using the data in the Data_F;1 tree, "Energy" leave.
+
 All the resulting TH1D objects are saved in the "output.root" file. You can then process this "output.root" folder with the following macros.
-    
+
+### Energy_Spectra_Processing
+These are the macros used to obtain the energy calibration graphs. Each one of the macros have been tuned to a particular set of runs, however, they contain virtually the same code; the only diffence are the values of some constants.
+Therefore, if you need to analyze a different run, you can simply copy and edit one of the macros.
+
+They take, as an input, the files generated in "Energy_Histogram_Maker". You must specify the file name inside the corresponding macro. It extracts the selected histograms and fits a gauss+erc+lin function with the selected ROI, to each peak. Then, it will generate a Resolution (FWHM) - Energy and a Position - Energy ("calibration line"), and fit a line to find the calibration function. It also calculates the "Peak to Total" ratio (PTT). It will save those graphs to a "xxx_Cal" file.
